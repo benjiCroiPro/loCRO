@@ -1,0 +1,11 @@
+## Node modules ##
+/node_modules/*
+
+## Production folders ##
+/production/*
+/websites/*
+/variations/*
+yarn.lock
+yarn-error.log
+locro.sublime-project
+locro.sublime-workspace
