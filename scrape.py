@@ -73,6 +73,9 @@ if config_file.is_file():
 			# if asset has data-image-lg attribute
 			elif asset.has_attr('data-image-lg'):
 				href = asset.get('data-image-lg')
+			# if asset has data-original attribute
+			elif asset.has_attr('data-original'):
+				href = asset.get('data-original')
 
 			# if href not equal to false
 			if href != False:
