@@ -57,25 +57,10 @@ if config_file.is_file():
 		for asset in asset_tags:
 			# set href variable to false because setting it in the else statement caused errors
 			href = False
-			# if asset is a stylesheet
-			if asset.has_attr('href') and asset.has_attr("rel"):
-				if "stylesheet" in asset.get("rel"):
-					href = asset.get('href')
-			# if asset has src attribute
-			elif asset.has_attr('src'):
-				href = asset.get('src')
-			# if asset has data-original attribute
-			elif asset.has_attr('data-original'):
-				href = asset.get('data-original')
-			# if asset has data-src attribute
-			elif asset.has_attr('data-src'):
-				href = asset.get('data-src')
-			# if asset has data-image-lg attribute
-			elif asset.has_attr('data-image-lg'):
-				href = asset.get('data-image-lg')
-			# if asset has data-original attribute
-			elif asset.has_attr('data-original'):
-				href = asset.get('data-original')
+			# loop through attributes and match regex for any known and desired filetype 
+			for attr in asset.attrs:
+				if re.search(r"\.(ico|png|webP|jpg|jpeg|gif|bmp|js|css|scss|sass)", attr):
+					href = asset.get(attr)
 
 			# if href not equal to false
 			if href != False:
