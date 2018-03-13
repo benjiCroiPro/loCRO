@@ -117,9 +117,6 @@ def generate_dev_enviroment(config):
 	# close file
 	index.close()
 
-	# copy code_template folder (as defined in config.json) to test directory
-	shutil.copytree(code_template, test_directory + '/code')
-
 	# try create locro directory in local site folder
 	try:
 		os.makedirs(site_directory + '/locro')
@@ -133,3 +130,7 @@ def generate_dev_enviroment(config):
 	# raise error
 	except Exception as e:
 		raise e
+
+	if os.path.isdir(test_directory + '/code') != True:
+		print ("importing code template")
+		shutil.copytree(code_template, test_directory + '/code')

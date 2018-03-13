@@ -59,8 +59,9 @@ if config_file.is_file():
 			href = False
 			# loop through attributes and match regex for any known and desired filetype 
 			for attr in asset.attrs:
-				if re.search(r"\.(ico|png|webP|jpg|jpeg|gif|bmp|js|css|scss|sass)", attr):
-					href = asset.get(attr)
+				val = str(asset.get(attr))
+				if re.search(r"\.(ico|png|webP|jpg|jpeg|gif|bmp|js|css|scss|sass)", val):
+					href = val
 
 			# if href not equal to false
 			if href != False:

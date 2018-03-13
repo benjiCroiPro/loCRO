@@ -2,6 +2,6 @@
 	"client_directory": "C:\\Users\\bcohen05\\Desktop\\Work (local)\\test\\",
 	"test_id": "TEST001",
 	"url": "https://www.bathstore.com/",
-	"enviroment_template": "\\code_template-generic"
+	"enviroment_template": "code_template-generic"
 }
 
