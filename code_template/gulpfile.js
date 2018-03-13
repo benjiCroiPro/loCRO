@@ -2,10 +2,7 @@ const gulp = require('gulp'),
   autoprefixer = require('gulp-autoprefixer'),
   babel = require('gulp-babel'),
   sass = require('gulp-sass'),
-  replace = require('gulp-replace'),
   runSequence = require('run-sequence'),
-  fs = require('fs'),
-  cssmin = require('gulp-cssmin'),
   Prod = '../site/locro/',
   Build = 'build/'
  
@@ -38,6 +35,7 @@ gulp.task('watch', ['build'], () => {
   browserSync.init({
     server: {
       baseDir: '../site/',
+      port: 3000
     }
   }),
   gulp.watch(Build+'*.scss', ['sass']);
