@@ -129,7 +129,7 @@ def generate_dev_enviroment(config):
 			raise
 	# try copying locro.js file to local site locro folder
 	try:
-		copy('locro.js', site_directory + '/locro')
+		shutil.copy('locro.js', site_directory + '/locro')
 	# raise error
 	except Exception as e:
 		raise e
