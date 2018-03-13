@@ -33,6 +33,9 @@ def scrape_and_save(link, directory, file_name, original_url):
 		elif link[0] == '/' and link[1] == '/':
 			# asset is 3rd party, add 'https:' to start of string
 			link  = 'https:'+link
+		elif 'http' not in link:
+			# set link variable to original_url + link
+			link  = original_url+'/'+re.sub(r"^/", '', link.replace(original_url, ''))
 
 	# try and make new directory
 	try:
