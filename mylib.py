@@ -42,6 +42,11 @@ def scrape_and_save(link, directory, file_name, original_url):
 		if e.errno != errno.EEXIST:
 			raise
 
+	# set user agent to prevent 403 errors
+	opener = urllib.request.build_opener()
+	opener.addheaders = [('User-agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:55.0) Gecko/20100101 Firefox/55.0')]
+	urllib.request.install_opener(opener)
+	
 	# try and download asset
 	try:
 		urllib.request.urlretrieve(link, link_file_path)
