@@ -1,6 +1,6 @@
 {
-	"client_directory": "C:\\Users\\bcohen05\\Desktop\\Work (local)\\Jurys Inn\\",
+	"client_directory": "C:\\Users\\Public\\",
 	"test_id": "TEST001",
-	"url": "https://www.jurysinns.com",
-	"enviroment_template": "\\code_template"
+	"url": "https://www.example.com",
+	"enviroment_template": "\\code_template-generic"
 }
