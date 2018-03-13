@@ -26,9 +26,9 @@ How to use it
 
 3. Run it
 
-	Once the config.json file has been updated, simply open a terminal window in the folder containing scrape.py, type "python scrape.py" and press enter.
+Once the config.json file has been updated, simply open a terminal window in the folder containing scrape.py, type "python scrape.py" and press enter.
 
 
 The Enviroment Template
 	
-	The Enviroment Template is essentially a template of your standard code folder and setup. The default template contains a gulpfile, package.json and build folder containing template V1 JS and SCSS files. this can be altered to match your personal preferences
+The Enviroment Template is essentially a template of your standard code folder and setup. The default template contains a gulpfile, package.json and build folder containing template V1 JS and SCSS files. this can be altered to match your personal preferences
