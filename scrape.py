@@ -53,6 +53,9 @@ if config_file.is_file():
 		for a in soup.find_all("div"):
 			asset_tags.append(a)
 
+		# empyt array to store downloaded asset hrefs, this is checked to ensure assets are not downloaded more than once
+		downloaded_assets = []
+
 		# loop through all stored tags in asset_tags variable
 		for asset in asset_tags:
 			# set href variable to false because setting it in the else statement caused errors
@@ -60,22 +63,27 @@ if config_file.is_file():
 			# loop through attributes and match regex for any known and desired filetype 
 			for attr in asset.attrs:
 				val = str(asset.get(attr))
-				if re.search(r"\.(ico|png|webP|jpg|jpeg|gif|bmp|js|css|scss|sass)", val):
+				if re.search(r"\.(ico|png|webP|jpg|jpeg|gif|bmp|js|css|scss|sass|woff|svg)", val):
 					href = val
-
 			# if href not equal to false
 			if href != False:
-				# if url in href (doing this to detect 'url("")' in attributes)
-				if "url" in href:
-					# regex to strip unwanted characters
-					href = re.sub(r"url|\(|\)|\"|\'", "", href)
-					# print asset href and pass details onto scrape_and_save function
-					print ("Found ingredient: "+ href)
-					mylib.scrape_and_save(href, site_directory, href, original_url)
+				# check if href not in list of already downloaded assets
+				if href not in downloaded_assets:
+					# add href to downloaded_assets
+					downloaded_assets.append(href)
+					# if url in href (doing this to detect 'url("")' in attributes)
+					if "url" in href:
+						# regex to strip unwanted characters
+						href = re.sub(r"url|\(|\)|\"|\'", "", href)
+						# print asset href and pass details onto scrape_and_save function
+						print ("Found ingredient: "+ href)
+						mylib.scrape_and_save(href, site_directory, href, original_url)
+					else:
+						# print asset href and pass details onto scrape_and_save function
+						print ("Found ingredient: "+ href)
+						mylib.scrape_and_save(href, site_directory, href, original_url)
 				else:
-					# print asset href and pass details onto scrape_and_save function
-					print ("Found ingredient: "+ href)
-					mylib.scrape_and_save(href, site_directory, href, original_url)
+					print("already downloaded: " + href)
 					
 		# Once done pass config file onto generae_dev_enviroment (function found in mylib file)
 		mylib.generate_dev_enviroment(config)
