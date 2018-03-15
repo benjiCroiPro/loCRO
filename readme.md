@@ -16,6 +16,7 @@ How to use it
 	The scraper script relies on the Python module BeautifulSoup4 (BS4) and you will need to install it before running the script.
 
 	To install BS4 you will need to open a terminal window, type the below code and press enter.
+	
 		pip install beautifulsoup4
 	
 	Once BS4 has finished installing, move onto the next step.
