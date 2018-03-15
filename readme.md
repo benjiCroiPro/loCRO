@@ -11,7 +11,16 @@ How to use it
 
 	Please note: You may need to set up enviroment variables in order to correctly run the program
 
-2. config.json
+2. BeautifulSoup4
+
+	The scraper script relies on the Python module BeautifulSoup4 (BS4) and you will need to install it before running the script.
+
+	To install BS4 you will need to open a terminal window, type the below code and press enter.
+		pip install beautifulsoup4
+	
+	Once BS4 has finished installing, move onto the next step.
+	
+3. config.json
 
 	Open the config.json file to configure the program.
 	There are 4 key/value pairs in this file:
@@ -24,7 +33,7 @@ How to use it
 
 		enviroment_template - This should remain as is unless you specifically want to use a different enviroment_template. To use a different enviroment_template, please refer to the section below for instructions.
 
-3. Run it
+4. Run it
 
 Once the config.json file has been updated, simply open a terminal window in the folder containing scrape.py, type "python scrape.py" and press enter.
 
