@@ -13,14 +13,15 @@ def scrape_and_save(link, directory, file_name, original_url):
 		link_file_path = orig_dir + '/' + file_name
 	else:
 		# else, get the file_name from the file_path_generator function (pass file_name from original function call to this function)
-		f_p = file_path_generator(file_name)
+		f_p = file_path_generator(re.sub(r'^ | $', '', file_name))
 		# if filepath doesn't start with '/', add a '/'
 		if f_p[0] != '/':
 			f_p = '/' + f_p
 		# set new directory variable for file parent folder 
 		directory = orig_dir + f_p
+		print (directory)
 		# set link_file_path variable for filepath directly to file, uses url2name function (pass file_name from original function call to this function)
-		link_file_path = directory + '/' + url2name(file_name)
+		link_file_path = directory + '/' + url2name(re.sub(r'^ | $', '', file_name))
 		# if original link is in the asset
 		if original_url in link:
 			# set link variable to original_url + link (using regex to remove orinal url from link. This ensure consistent urls) 
@@ -49,16 +50,22 @@ def scrape_and_save(link, directory, file_name, original_url):
 	opener = urllib.request.build_opener()
 	opener.addheaders = [('User-agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:55.0) Gecko/20100101 Firefox/55.0')]
 	urllib.request.install_opener(opener)
-	
+	error_404 = False
 	# try and download asset
 	try:
 		urllib.request.urlretrieve(link, link_file_path)
 	# raise errors
-	except Exception as e:
-		raise e
+	except urllib.error.HTTPError as e:
+		if e.code == 404:
+			error_404 = True
+			print ("404 Error - File not found")
+		else:
+			raise e
+	except Exception as ex:
+		raise ex
 
 	# if filename isn't index.html
-	if file_name != 'index.html':
+	if file_name != 'index.html' and error_404 != True:
 		# log message to console
 		print ("Saving ingredient: " + link)
 		# try opening index.html file with read permissions

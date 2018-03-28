@@ -62,8 +62,10 @@ if config_file.is_file():
 			href = False
 			# loop through attributes and match regex for any known and desired filetype 
 			for attr in asset.attrs:
+				# store attribute value in variable
 				val = str(asset.get(attr))
-				if re.search(r"\.(ico|png|webP|jpg|jpeg|gif|bmp|js|css|scss|sass|woff|svg|json|pdf|txt)", val):
+				# check if attribute value contains known, desirable file extensions (using regex) and ignore srcset attributes (causes issues in the download)
+				if re.search(r"\.(ico|png|webP|jpg|jpeg|gif|bmp|js|css|scss|sass|woff|svg|json|pdf|txt)", val) and attr != "srcset":
 					href = val
 			# if href not equal to false
 			if href != False:
@@ -74,7 +76,7 @@ if config_file.is_file():
 					# if url in href (doing this to detect 'url("")' in attributes)
 					if "url" in href:
 						# regex to strip unwanted characters
-						href = re.sub(r"url|\(|\)|\"|\'", "", href)
+						href = re.sub(r"url|\(|background-image:|\)|\"|\'|;", "", href)
 						# print asset href and pass details onto scrape_and_save function
 						print ("Found ingredient: "+ href)
 						mylib.scrape_and_save(href, site_directory, href, original_url)
